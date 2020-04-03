@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import HomePage from "./HomePage";
+import HomePage from "./pages/homepage/HomePage";
 
 export class App extends Component {
   render() {
