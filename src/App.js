@@ -6,23 +6,22 @@ import Shop from "./pages/shop/Shop";
 import Header from "./components/Header/Header";
 import signInAndSignUp from "./pages/sign-in-and-sign-up/sign-in-and-sign-up";
 import { auth, createUserProfileDocument } from "./firebase/Firebase";
+import { connect } from "react-redux";
+import { setCurrentUser } from "./actions/userAction";
 export class App extends Component {
-  state = {
-    currentUser: null,
-  };
   unSubscribeFromAuth = null;
   componentDidMount() {
+    const { setCurrentUser } = this.props;
     this.unSubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
         userRef.onSnapshot((snapshot) => {
-          this.setState({
+          setCurrentUser({
             currentUser: { ...snapshot.data(), id: snapshot.id },
           });
-          console.log(this.state.currentUser);
         });
       } else {
-        this.setState({ currentUser: userAuth });
+        setCurrentUser(userAuth);
       }
     });
   }
@@ -32,7 +31,7 @@ export class App extends Component {
   render() {
     return (
       <div>
-        <Header currentUser={this.state.currentUser} />
+        <Header />
         <Switch>
           <Route path="/" exact component={HomePage} />
           <Route path="/shop" component={Shop} />
@@ -43,4 +42,4 @@ export class App extends Component {
   }
 }
 
-export default App;
+export default connect(null, { setCurrentUser })(App);
