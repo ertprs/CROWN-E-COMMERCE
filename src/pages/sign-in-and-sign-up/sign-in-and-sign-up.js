@@ -2,7 +2,7 @@ import React from "react";
 import SignIn from "../../components/SignIn/SignIn";
 import SignUp from "../../components/signUp/SignUp";
 import "./sign-in-and-sign-up.scss";
-const signInAndSignUp = () => {
+const SignInAndSignUp = () => {
   return (
     <div className="sign-in-and-sign-up">
       <SignIn />
@@ -11,4 +11,4 @@ const signInAndSignUp = () => {
   );
 };
 
-export default signInAndSignUp;
+export default SignInAndSignUp;

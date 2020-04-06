@@ -1,10 +1,13 @@
 import React from "react";
-import { ReactComponent as Logo } from "./Header.svg";
+import { ReactComponent as Logo } from "../../assets/Header.svg";
 import { Link } from "react-router-dom";
 import "./Header.scss";
 import { auth } from "../../firebase/Firebase";
 import { connect } from "react-redux";
-const Header = ({ currentUser }) => {
+import CartIcon from "../cartIcon/CartIcon";
+import CartDropdown from "../cartDropdown/CartDropdown";
+import { toggleDropdown } from "../../actions/cartActions";
+const Header = ({ currentUser, toggleDropdown, cartToggleDropdown }) => {
   return (
     <div className="header">
       <Link className="logo-container" to="/">
@@ -24,13 +27,16 @@ const Header = ({ currentUser }) => {
         ) : (
           <Link to="/signin">SIGN IN</Link>
         )}
+        <CartIcon onClick={() => toggleDropdown()} />
       </div>
+      {cartToggleDropdown ? <CartDropdown /> : null}
     </div>
   );
 };
 const mapStateToProps = (state) => {
   return {
     currentUser: state.user.currentUser,
+    cartToggleDropdown: state.cart.cartToggleDropdown,
   };
 };
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps, { toggleDropdown })(Header);
