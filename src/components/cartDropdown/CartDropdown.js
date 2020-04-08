@@ -4,8 +4,6 @@ import "./CartDropdown.scss";
 import { connect } from "react-redux";
 import history from "../../history/history";
 const CartDropdown = ({ itemsArray }) => {
-  const storedItems = localStorage.getItem("test");
-
   let displayItem;
   if (itemsArray.length > 0) {
     displayItem = itemsArray.map((item) => {
