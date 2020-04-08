@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import {
   cartToggleDropdownInCheckout,
   removeItemInCheckout,
+  addItem,
+  removeItem,
 } from "../../actions/cartActions";
 import "./checkout.scss";
 export class Checkout extends Component {
@@ -37,7 +39,15 @@ export class Checkout extends Component {
             <img src={item.imageUrl} alt={item.name} />
           </div>
           <span className="name">{item.name}</span>
-          <span className="quantity">{item.quantity}</span>
+          <span className="quantity">
+            <div className="arrow" onClick={() => this.props.removeItem(item)}>
+              &#10094;
+            </div>
+            <span className="value">{item.quantity}</span>
+            <div className="arrow" onClick={() => this.props.addItem(item)}>
+              &#10095;
+            </div>
+          </span>
           <span className="price">{item.price}</span>
           <div
             className="remove-button"
@@ -83,4 +93,6 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, {
   cartToggleDropdownInCheckout,
   removeItemInCheckout,
+  addItem,
+  removeItem,
 })(Checkout);

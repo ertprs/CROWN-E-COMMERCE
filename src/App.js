@@ -12,14 +12,6 @@ import Checkout from "./pages/checkout/Checkout";
 export class App extends Component {
   unSubscribeFromAuth = null;
   componentDidMount() {
-    // localStorage.removeItem("test");
-    const storedItems = localStorage.getItem("test");
-    let itemCount;
-    if (storedItems) {
-      itemCount = JSON.parse(storedItems).length;
-    } else {
-      itemCount = 0;
-    }
     const { setCurrentUser } = this.props;
     this.unSubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {

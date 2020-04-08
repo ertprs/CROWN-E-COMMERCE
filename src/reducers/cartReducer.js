@@ -1,8 +1,9 @@
-import { addItemsToCart } from "./cartUtils";
+import { addItemsToCart, removeItemFromCart } from "./cartUtils";
 const INITIAL_STATE = {
   cartToggleDropdown: false,
   itemsArray: [],
 };
+
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case "TOGGLE_DROPDOWN":
@@ -11,6 +12,11 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
         itemsArray: addItemsToCart(state.itemsArray, action.payload),
+      };
+    case "REMOVE_ITEM":
+      return {
+        ...state,
+        itemsArray: removeItemFromCart(state.itemsArray, action.payload),
       };
     case "CART_TOGGLE_DROPDOWN_IN_CHECKOUT":
       return {

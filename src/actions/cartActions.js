@@ -19,7 +19,12 @@ export const addItem = (itemsAddedToCart) => {
     payload: { ...itemsAddedToCart },
   };
 };
-
+export const removeItem = (itemTobeRemovedFromCheckout) => {
+  return {
+    type: "REMOVE_ITEM",
+    payload: itemTobeRemovedFromCheckout,
+  };
+};
 export const cartToggleDropdownInCheckout = () => {
   return {
     type: "CART_TOGGLE_DROPDOWN_IN_CHECKOUT",
