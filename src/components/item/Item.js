@@ -1,10 +1,8 @@
-import "./CollectionItem.scss";
+import React, { Component } from "react";
 import CustomButton from "../CustomButton/CustomButton";
 import { connect } from "react-redux";
 import { addItem } from "../../actions/cartActions";
-import React, { Component } from "react";
-
-export class CollectionItem extends Component {
+export class Item extends Component {
   test = () => {
     const { name, price, imageUrl, addItem, id } = this.props;
 
@@ -32,4 +30,4 @@ export class CollectionItem extends Component {
   }
 }
 
-export default connect(null, { addItem })(CollectionItem);
+export default connect(null, { addItem })(Item);
