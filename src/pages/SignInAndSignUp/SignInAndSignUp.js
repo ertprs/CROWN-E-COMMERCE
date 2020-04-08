@@ -1,7 +1,7 @@
 import React from "react";
 import SignIn from "../../components/SignIn/SignIn";
 import SignUp from "../../components/signUp/SignUp";
-import "./sign-in-and-sign-up.scss";
+import "./SignInAndSignUp.scss";
 const SignInAndSignUp = () => {
   return (
     <div className="sign-in-and-sign-up">

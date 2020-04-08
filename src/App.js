@@ -4,12 +4,12 @@ import "./App.css";
 import { Route, Switch, Redirect } from "react-router-dom";
 import Shop from "./pages/shop/Shop";
 import Header from "./components/Header/Header";
-import SignInAndSignUp from "./pages/sign-in-and-sign-up/Sign-in-and-sign-up";
 import { auth, createUserProfileDocument } from "./firebase/Firebase";
 import { connect } from "react-redux";
 import { setCurrentUser } from "./actions/userAction";
 import Checkout from "./pages/checkout/Checkout";
 import ShopItem from "./pages/shopItem/ShopItem";
+import SignInAndSignUp from "./pages/SignInAndSignUp/SignInAndSignUp";
 export class App extends Component {
   unSubscribeFromAuth = null;
   componentDidMount() {
