@@ -12,6 +12,7 @@ const CollectionPreview = ({ items, title }) => {
             return (
               <CollectionItem
                 key={id}
+                id={id}
                 name={name}
                 price={price}
                 imageUrl={imageUrl}

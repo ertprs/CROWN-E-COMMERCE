@@ -4,7 +4,7 @@ import CollectionPreview from "../../components/Collection-preview/CollectionPre
 
 export class Shop extends Component {
   state = {
-    collections: SHOP_DATA
+    collections: SHOP_DATA,
   };
   render() {
     return (

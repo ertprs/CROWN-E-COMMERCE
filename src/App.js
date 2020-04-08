@@ -8,9 +8,20 @@ import SignInAndSignUp from "./pages/sign-in-and-sign-up/Sign-in-and-sign-up";
 import { auth, createUserProfileDocument } from "./firebase/Firebase";
 import { connect } from "react-redux";
 import { setCurrentUser } from "./actions/userAction";
+import { updateItemCount } from "./actions/cartActions";
+import Checkout from "./pages/checkout/Checkout";
 export class App extends Component {
   unSubscribeFromAuth = null;
   componentDidMount() {
+    // localStorage.removeItem("test");
+    const storedItems = localStorage.getItem("test");
+    let itemCount;
+    if (storedItems) {
+      itemCount = JSON.parse(storedItems).length;
+    } else {
+      itemCount = 0;
+    }
+    this.props.updateItemCount(itemCount);
     const { setCurrentUser } = this.props;
     this.unSubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
@@ -35,6 +46,7 @@ export class App extends Component {
         <Switch>
           <Route path="/" exact component={HomePage} />
           <Route path="/shop" component={Shop} />
+          <Route path="/checkout" component={Checkout} />
           <Route
             path="/signin"
             render={() =>
@@ -52,4 +64,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { setCurrentUser })(App);
+export default connect(mapStateToProps, { setCurrentUser, updateItemCount })(
+  App
+);

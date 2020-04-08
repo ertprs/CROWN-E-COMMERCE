@@ -1,13 +1,18 @@
 import React from "react";
 import "./CartIcon.scss";
 import { ReactComponent as ShoppingIcon } from "../../assets/CartIcon.svg";
-const CartIcon = ({ onClick }) => {
+import { connect } from "react-redux";
+const CartIcon = ({ onClick, itemCount }) => {
   return (
     <div className="cart-icon" onClick={onClick}>
       <ShoppingIcon className="shopping-icon" />
-      <span className="item-count">0</span>
+      <span className="item-count">{itemCount}</span>
     </div>
   );
 };
-
-export default CartIcon;
+const mapStateToProps = (state) => {
+  return {
+    itemCount: state.cart.itemCount,
+  };
+};
+export default connect(mapStateToProps)(CartIcon);
