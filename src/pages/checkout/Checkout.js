@@ -7,6 +7,7 @@ import {
   removeItem,
 } from "../../actions/cartActions";
 import "./checkout.scss";
+import StripeButton from "../../components/StripeButton/StripeButton";
 export class Checkout extends Component {
   componentDidMount() {
     this.props.cartToggleDropdownInCheckout();
@@ -70,6 +71,14 @@ export class Checkout extends Component {
         </div>
         {this.renderItemsArray()}
         <div className="total">Total : ${this.renderTotalPrice()}</div>
+
+        <div className="test-warning">
+          *Please use the following test credit card for payments*
+          <br />
+          4242 4242 4242 4242 - Exp: 01/22 - CVV: 123
+        </div>
+
+        <StripeButton price={this.renderTotalPrice()} />
       </div>
     );
   }
