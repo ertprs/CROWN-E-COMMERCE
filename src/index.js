@@ -7,8 +7,10 @@ import { Router } from "react-router-dom";
 import { Provider } from "react-redux";
 import { createStore, compose, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
-import reducers from "./reducers";
 import history from "./history/history";
+import { persistStore } from "redux-persist";
+import { PersistGate } from "redux-persist/integration/react";
+import reducers from "./reducers";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -18,7 +20,9 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <Router history={history}>
-        <App />
+        <PersistGate persistor={persistStore(store)}>
+          <App />
+        </PersistGate>
       </Router>
     </Provider>
   </React.StrictMode>,

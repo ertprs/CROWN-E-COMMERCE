@@ -11,18 +11,7 @@ export class Checkout extends Component {
   componentDidMount() {
     this.props.cartToggleDropdownInCheckout();
   }
-  addItemQuantity = (quantity) => {
-    const test = this.props.itemsArray.map((item) => {
-      return { ...item, quantity: quantity + 1 };
-    });
-    console.log(test);
-  };
-  subtractItemQuantity = (quantity) => {
-    const test = this.props.itemsArray.map((item) => {
-      return { ...item, quantity: quantity - 1 };
-    });
-    console.log(test);
-  };
+
   renderTotalPrice = () => {
     const price = this.props.itemsArray.map((item) => {
       return item.price * item.quantity;
