@@ -1,7 +1,6 @@
 import { addItemsToCart } from "./cartUtils";
 const INITIAL_STATE = {
   cartToggleDropdown: false,
-  itemCount: 0,
   itemsArray: [],
 };
 export default (state = INITIAL_STATE, action) => {
@@ -9,13 +8,15 @@ export default (state = INITIAL_STATE, action) => {
     case "TOGGLE_DROPDOWN":
       return { ...state, cartToggleDropdown: !state.cartToggleDropdown };
     case "ADD_ITEM":
-      console.log(state.itemsArray);
       return {
         ...state,
         itemsArray: addItemsToCart(state.itemsArray, action.payload),
       };
-    case "UPDATE_ITEM_COUNT":
-      return { ...state, itemCount: action.payload };
+    case "CART_TOGGLE_DROPDOWN_IN_CHECKOUT":
+      return {
+        ...state,
+        cartToggleDropdown: false,
+      };
     default:
       return state;
   }

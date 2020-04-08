@@ -5,19 +5,25 @@ import { connect } from "react-redux";
 import history from "../../history/history";
 const CartDropdown = ({ itemsArray }) => {
   const storedItems = localStorage.getItem("test");
-  const displayItem = itemsArray.map((item) => {
-    return (
-      <div key={item.id} className="cart-item">
-        <img src={item.imageUrl} alt={item.name} />
-        <div className="item-details">
-          <span className="name">{item.name}</span>
-          <span className="price">
-            {item.quantity} x ${item.price}
-          </span>{" "}
+
+  let displayItem;
+  if (itemsArray.length > 0) {
+    displayItem = itemsArray.map((item) => {
+      return (
+        <div key={item.id} className="cart-item">
+          <img src={item.imageUrl} alt={item.name} />
+          <div className="item-details">
+            <span className="name">{item.name}</span>
+            <span className="price">
+              {item.quantity} x ${item.price}
+            </span>{" "}
+          </div>
         </div>
-      </div>
-    );
-  });
+      );
+    });
+  } else {
+    displayItem = <div className="empty-message">Your cart is empty</div>;
+  }
   return (
     <div className="cart-dropdown">
       <div className="cart-items">{displayItem}</div>

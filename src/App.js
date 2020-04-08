@@ -8,7 +8,6 @@ import SignInAndSignUp from "./pages/sign-in-and-sign-up/Sign-in-and-sign-up";
 import { auth, createUserProfileDocument } from "./firebase/Firebase";
 import { connect } from "react-redux";
 import { setCurrentUser } from "./actions/userAction";
-import { updateItemCount } from "./actions/cartActions";
 import Checkout from "./pages/checkout/Checkout";
 export class App extends Component {
   unSubscribeFromAuth = null;
@@ -21,7 +20,6 @@ export class App extends Component {
     } else {
       itemCount = 0;
     }
-    this.props.updateItemCount(itemCount);
     const { setCurrentUser } = this.props;
     this.unSubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
@@ -64,6 +62,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { setCurrentUser, updateItemCount })(
-  App
-);
+export default connect(mapStateToProps, { setCurrentUser })(App);

@@ -1,12 +1,12 @@
 import "./CollectionItem.scss";
 import CustomButton from "../CustomButton/CustomButton";
 import { connect } from "react-redux";
-import { addItem, updateItemCount } from "../../actions/cartActions";
+import { addItem } from "../../actions/cartActions";
 import React, { Component } from "react";
 
 export class CollectionItem extends Component {
   test = () => {
-    const { name, price, imageUrl, addItem, updateItemCount, id } = this.props;
+    const { name, price, imageUrl, addItem, id } = this.props;
     let storedItems = localStorage.getItem("test");
     let itemCountLocal;
     if (storedItems) {
@@ -17,7 +17,6 @@ export class CollectionItem extends Component {
     if (!itemCountLocal) {
       itemCountLocal = 1;
     }
-    updateItemCount(itemCountLocal);
     return addItem({ name, price, imageUrl, id });
   };
   render() {
@@ -47,9 +46,7 @@ const mapStateToProps = (state) => {
     itemCount: state.cart.itemCount,
   };
 };
-export default connect(mapStateToProps, { addItem, updateItemCount })(
-  CollectionItem
-);
+export default connect(mapStateToProps, { addItem })(CollectionItem);
 
 // const CollectionItem = ({
 //   name,

@@ -20,9 +20,8 @@ export const addItem = (itemsAddedToCart) => {
   };
 };
 
-export const updateItemCount = (itemCount) => {
+export const cartToggleDropdownInCheckout = () => {
   return {
-    type: "UPDATE_ITEM_COUNT",
-    payload: itemCount,
+    type: "CART_TOGGLE_DROPDOWN_IN_CHECKOUT",
   };
 };
