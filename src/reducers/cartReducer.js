@@ -17,6 +17,16 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         cartToggleDropdown: false,
       };
+    case "REMOVE_ITEM_IN_CHECKOUT":
+      const newItemsArray = state.itemsArray.filter(
+        (item) => item.id !== action.payload
+      );
+
+      return {
+        ...state,
+        itemsArray: newItemsArray,
+      };
+
     default:
       return state;
   }

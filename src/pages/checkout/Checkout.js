@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { cartToggleDropdownInCheckout } from "../../actions/cartActions";
+import {
+  cartToggleDropdownInCheckout,
+  removeItemInCheckout,
+} from "../../actions/cartActions";
 import "./checkout.scss";
 export class Checkout extends Component {
   componentDidMount() {
@@ -36,7 +39,12 @@ export class Checkout extends Component {
           <span className="name">{item.name}</span>
           <span className="quantity">{item.quantity}</span>
           <span className="price">{item.price}</span>
-          <div className="remove-button">&#10008;</div>
+          <div
+            className="remove-button"
+            onClick={() => this.props.removeItemInCheckout(item.id)}
+          >
+            &#10008;
+          </div>
         </div>
       );
     });
@@ -61,7 +69,7 @@ export class Checkout extends Component {
             <span>Remove</span>
           </div>
         </div>
-        <div>{this.renderItemsArray()}</div>
+        {this.renderItemsArray()}
         <div className="total">Total : ${this.renderTotalPrice()}</div>
       </div>
     );
@@ -72,6 +80,7 @@ const mapStateToProps = (state) => {
     itemsArray: state.cart.itemsArray,
   };
 };
-export default connect(mapStateToProps, { cartToggleDropdownInCheckout })(
-  Checkout
-);
+export default connect(mapStateToProps, {
+  cartToggleDropdownInCheckout,
+  removeItemInCheckout,
+})(Checkout);

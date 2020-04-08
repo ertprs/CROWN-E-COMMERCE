@@ -25,3 +25,9 @@ export const cartToggleDropdownInCheckout = () => {
     type: "CART_TOGGLE_DROPDOWN_IN_CHECKOUT",
   };
 };
+export const removeItemInCheckout = (id) => {
+  return {
+    type: "REMOVE_ITEM_IN_CHECKOUT",
+    payload: id,
+  };
+};
