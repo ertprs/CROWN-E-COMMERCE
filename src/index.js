@@ -14,7 +14,13 @@ import reducers from "./reducers";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const store = createStore(reducers, composeEnhancers(applyMiddleware(thunk)));
+let middleWare;
+
+if (process.env.NODE_ENV === "production") {
+  middleWare = applyMiddleware(thunk);
+}
+
+const store = createStore(reducers, composeEnhancers(middleWare));
 
 ReactDOM.render(
   <React.StrictMode>
