@@ -1,10 +1,18 @@
 import React from "react";
 import "./CollectionPreview.scss";
 import CollectionItem from "../CollectionItem/CollectionItem";
-const CollectionPreview = ({ items, title }) => {
+import { withRouter } from "react-router-dom";
+import history from "../../history/history";
+const CollectionPreview = ({ items, title, match }) => {
+  console.log(match);
   return (
     <div className="collection-preview">
-      <h1 className="title">{title.toUpperCase()}</h1>
+      <h1
+        className="title"
+        onClick={() => history.push(`${match.path}/${title.toLowerCase()}`)}
+      >
+        {title.toUpperCase()}
+      </h1>
       <div className="preview">
         {items
           .filter((item, index) => index < 4)
@@ -24,4 +32,4 @@ const CollectionPreview = ({ items, title }) => {
   );
 };
 
-export default CollectionPreview;
+export default withRouter(CollectionPreview);
