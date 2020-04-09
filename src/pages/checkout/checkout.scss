@@ -79,3 +79,11 @@ button {
   font-size: 24px;
   color: red;
 }
+@media screen and (max-width: 800px) {
+  .checkout-page {
+    width: 90%;
+  }
+  .checkout-item {
+    font-size: 18px;
+  }
+}
