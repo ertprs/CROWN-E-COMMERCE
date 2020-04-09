@@ -6,6 +6,7 @@ import {
   firestore,
 } from "../../firebase/Firebase";
 import { fetchItemsFromFirebase } from "../../actions/shopAction";
+import Spinner from "../../components/spinner/Spinner";
 
 export class ShopItem extends Component {
   constructor(props) {
@@ -28,7 +29,7 @@ export class ShopItem extends Component {
         </div>
       );
     } else {
-      return null;
+      return <Spinner />;
     }
   }
 }

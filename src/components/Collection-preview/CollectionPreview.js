@@ -4,7 +4,6 @@ import CollectionItem from "../CollectionItem/CollectionItem";
 import { withRouter } from "react-router-dom";
 import history from "../../history/history";
 const CollectionPreview = ({ items, title, match }) => {
-  console.log(match);
   return (
     <div className="collection-preview">
       <h1

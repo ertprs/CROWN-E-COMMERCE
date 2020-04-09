@@ -6,6 +6,7 @@ import {
   convertCollectionsSnapshotToMap,
   firestore,
 } from "../../firebase/Firebase";
+import Spinner from "../../components/spinner/Spinner";
 
 export class Shop extends Component {
   constructor(props) {
@@ -19,13 +20,17 @@ export class Shop extends Component {
   }
 
   render() {
-    return (
-      <div>
-        {this.props.collections.map(({ title, id, items }) => {
-          return <CollectionPreview title={title} key={id} items={items} />;
-        })}
-      </div>
-    );
+    if (this.props.collections.length > 0) {
+      return (
+        <div>
+          {this.props.collections.map(({ title, id, items }) => {
+            return <CollectionPreview title={title} key={id} items={items} />;
+          })}
+        </div>
+      );
+    } else {
+      return <Spinner />;
+    }
   }
 }
 const mapStateToProps = (state) => {
