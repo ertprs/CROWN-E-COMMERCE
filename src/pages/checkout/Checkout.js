@@ -71,18 +71,24 @@ export class Checkout extends Component {
         </div>
         {this.renderItemsArray()}
         <div className="total">Total : ${this.renderTotalPrice()}</div>
-        {this.props.currentUser ? (
-          <div>
-            {" "}
-            <div className="test-warning">
-              *Please use the following test credit card for payments*
-              <br />
-              4242 4242 4242 4242 - Exp: 01/22 - CVV: 123
-            </div>
-            <StripeButton price={this.renderTotalPrice()} />{" "}
-          </div>
+        {this.props.itemsArray.length < 1 ? (
+          <h3 className="test-warning">Please Start Adding Items</h3>
         ) : (
-          <h3 className="test-warning">Please Sign In To Purchase Items</h3>
+          <div>
+            {this.props.currentUser ? (
+              <div>
+                {" "}
+                <div className="test-warning">
+                  *Please use the following test credit card for payments*
+                  <br />
+                  4242 4242 4242 4242 - Exp: 01/22 - CVV: 123
+                </div>
+                <StripeButton price={this.renderTotalPrice()} />{" "}
+              </div>
+            ) : (
+              <h3 className="test-warning">Please Sign In To Purchase Items</h3>
+            )}
+          </div>
         )}
       </div>
     );
