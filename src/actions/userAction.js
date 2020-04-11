@@ -4,3 +4,15 @@ export const setCurrentUser = (user) => {
     payload: user,
   };
 };
+
+export const setSpinner = () => {
+  return {
+    type: "SET_SPINNER",
+  };
+};
+
+export const setSpinnerToFalse = () => {
+  return {
+    type: "SET_SPINNER_TO_FALSE",
+  };
+};
