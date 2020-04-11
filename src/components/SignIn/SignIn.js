@@ -7,6 +7,7 @@ export class SignIn extends Component {
   state = {
     email: "",
     password: "",
+    error: "",
   };
   handleChange = (event) => {
     const { name, value } = event.target;
@@ -20,6 +21,10 @@ export class SignIn extends Component {
       this.setState({ email: "", password: "" });
     } catch (error) {
       console.log(error);
+      this.setState({ error: error.message });
+      setTimeout(() => {
+        this.setState({ error: "" });
+      }, 3000);
     }
   };
   render() {
@@ -28,6 +33,7 @@ export class SignIn extends Component {
         <h2>I already have an account</h2>
         <p>Sign in with your email and password</p>
         <form onSubmit={this.handleSubmit}>
+          <h3 style={{ color: "red" }}>{this.state.error}</h3>
           <FormInput
             type="email"
             name="email"
