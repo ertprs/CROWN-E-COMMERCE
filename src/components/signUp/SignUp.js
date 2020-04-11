@@ -20,8 +20,8 @@ export class SignUp extends Component {
   };
   handleSubmit = async (event) => {
     event.preventDefault();
-    const { displayName, email, password, confirmPassword } = this.state;
     this.props.setSpinner();
+    const { displayName, email, password, confirmPassword } = this.state;
     if (password !== confirmPassword) {
       this.props.setSpinnerToFalse();
       this.setState({ error: "Passwords do not match" });

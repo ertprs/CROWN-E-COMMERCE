@@ -10,7 +10,7 @@ import { setCurrentUser } from "./actions/userAction";
 import Checkout from "./pages/checkout/Checkout";
 import ShopItem from "./pages/shopItem/ShopItem";
 import SignInAndSignUp from "./pages/SignInAndSignUp/SignInAndSignUp";
-import { SignUp } from "./components/signUp/SignUp";
+import SignupPage from "./pages/SignupPage/SignupPage";
 export class App extends Component {
   unSubscribeFromAuth = null;
   componentDidMount() {
@@ -43,7 +43,7 @@ export class App extends Component {
           <Route
             path="/signup"
             render={() =>
-              this.props.currentUser ? <Redirect to="/" /> : <SignUp />
+              this.props.currentUser ? <Redirect to="/" /> : <SignupPage />
             }
           />
           <Route
