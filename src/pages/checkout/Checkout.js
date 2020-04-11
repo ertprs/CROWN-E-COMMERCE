@@ -71,14 +71,19 @@ export class Checkout extends Component {
         </div>
         {this.renderItemsArray()}
         <div className="total">Total : ${this.renderTotalPrice()}</div>
-
-        <div className="test-warning">
-          *Please use the following test credit card for payments*
-          <br />
-          4242 4242 4242 4242 - Exp: 01/22 - CVV: 123
-        </div>
-
-        <StripeButton price={this.renderTotalPrice()} />
+        {this.props.currentUser ? (
+          <div>
+            {" "}
+            <div className="test-warning">
+              *Please use the following test credit card for payments*
+              <br />
+              4242 4242 4242 4242 - Exp: 01/22 - CVV: 123
+            </div>
+            <StripeButton price={this.renderTotalPrice()} />{" "}
+          </div>
+        ) : (
+          <h3 className="test-warning">Please Sign In To Purchase Items</h3>
+        )}
       </div>
     );
   }
@@ -86,6 +91,7 @@ export class Checkout extends Component {
 const mapStateToProps = (state) => {
   return {
     itemsArray: state.cart.itemsArray,
+    currentUser: state.user.currentUser,
   };
 };
 export default connect(mapStateToProps, {
