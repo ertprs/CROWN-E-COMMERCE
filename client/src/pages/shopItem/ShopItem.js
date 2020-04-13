@@ -1,24 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import ItemPreview from "../../components/itemPreview/ItemPreview";
-import {
-  convertCollectionsSnapshotToMap,
-  firestore,
-} from "../../firebase/Firebase";
-import { fetchItemsFromFirebase } from "../../actions/shopAction";
+
+import { fetchItemsFromFirebaseAsync } from "../../actions/shopAction";
 import Spinner from "../../components/spinner/Spinner";
 
 export class ShopItem extends Component {
-  constructor(props) {
-    super(props);
-    const collectionRef = firestore.collection("collection");
-
-    collectionRef.onSnapshot(async (snapshot) => {
-      const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
-      props.fetchItemsFromFirebase(collectionsMap);
-    });
+  componentDidMount() {
+    this.props.fetchItemsFromFirebaseAsync();
   }
-  unSubscribeFromSnapshot = null;
 
   render() {
     if (this.props.section) {
@@ -49,4 +39,6 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-export default connect(mapStateToProps, { fetchItemsFromFirebase })(ShopItem);
+export default connect(mapStateToProps, {
+  fetchItemsFromFirebaseAsync,
+})(ShopItem);

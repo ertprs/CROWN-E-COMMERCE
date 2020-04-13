@@ -27,3 +27,9 @@ export const removeItemInCheckout = (id) => {
     payload: id,
   };
 };
+
+export const paymentSuccessful = () => {
+  return {
+    type: "PAYMENT_SUCCESSFUL",
+  };
+};

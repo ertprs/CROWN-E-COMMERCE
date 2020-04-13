@@ -32,7 +32,8 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         itemsArray: newItemsArray,
       };
-
+    case "PAYMENT_SUCCESSFUL":
+      return { ...state, itemsArray: [] };
     default:
       return state;
   }
