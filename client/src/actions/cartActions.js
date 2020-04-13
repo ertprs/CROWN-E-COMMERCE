@@ -1,3 +1,5 @@
+import history from "../history/history";
+
 export const toggleDropdown = () => {
   return {
     type: "TOGGLE_DROPDOWN",
@@ -29,6 +31,7 @@ export const removeItemInCheckout = (id) => {
 };
 
 export const paymentSuccessful = () => {
+  history.push("/");
   return {
     type: "PAYMENT_SUCCESSFUL",
   };

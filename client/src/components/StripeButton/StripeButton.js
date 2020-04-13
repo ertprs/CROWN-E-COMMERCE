@@ -3,7 +3,6 @@ import StripeCheckout from "react-stripe-checkout";
 import axios from "axios";
 import { connect } from "react-redux";
 import { paymentSuccessful } from "../../actions/cartActions";
-import { Redirect } from "react-router-dom";
 const StripeButton = ({ price, paymentSuccessful }) => {
   const priceForStripe = price * 100;
   const stripeKey = "pk_test_FEJFBJZnuMuv13hNXWi3ejcm00gCzXqImZ";
@@ -20,7 +19,6 @@ const StripeButton = ({ price, paymentSuccessful }) => {
         alert("Payment successful");
         paymentSuccessful();
         console.log(response);
-        return <Redirect to="/" />;
       })
       .catch((error) => {
         console.log("Payment error", error);
