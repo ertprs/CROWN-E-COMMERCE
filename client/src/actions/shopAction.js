@@ -29,11 +29,11 @@ export const fetchItemsFromFirebaseAsync = () => {
     const collectionRef = firestore.collection("collection");
     dispatch(fetchItemsStart);
 
-    collectionRef
+    return collectionRef
       .get()
       .then((snapshot) => {
         const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
-        dispatch(fetchItemsFromFirebase(collectionsMap));
+        return dispatch(fetchItemsFromFirebase(collectionsMap));
       })
       .catch((error) => dispatch(fetchItemsFailure(error)));
   };
