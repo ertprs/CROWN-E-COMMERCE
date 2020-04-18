@@ -9,6 +9,9 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         collections: action.payload,
       };
+    case "FETCH_ITEMS_FAILURE":
+      console.log(action.payload);
+      return state;
     default:
       return state;
   }
